@@ -14,8 +14,18 @@
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.css'
 export default {
-  props:['lists'],
+  props:  {
+    lists: {
+      type: Array,
+      required: true
+    },
+    name: {}
+  },
+  created(){
+    //console.log('created: ',document.querySelectorAll('.swiper-slide'))
+  },
   mounted() {
+    //console.log('mounted: ',document.querySelectorAll('.swiper-slide'))
     this.init()
   },
   methods: {
@@ -25,7 +35,16 @@ export default {
         pagination: '.swiper-pagination'
       })
     }
-  }
+  },
+  // watch:{
+  //     lists(val,oldVal) {
+  //     console.log(val,oldVal)
+  //     console.log('before nextTick: ',document.querySelectorAll('.swiper-slide'))
+  //     this.$nextTick(() => {
+  //       console.log('after nextTick: ',document.querySelectorAll('.swiper-slide'))
+  //     })
+  //   }
+  // }
 }
 </script>
 <style>
