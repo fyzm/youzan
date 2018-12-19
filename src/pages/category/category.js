@@ -29,7 +29,7 @@ new Vue({
 
       })
     },
-    getSubList(index,id){
+    getSubList(index,id){ 
       this.topIndex = index
       if(index === 0) {
         this.getRank()
@@ -42,10 +42,13 @@ new Vue({
     getRank () {
       axios.get(url.rank).then(res => {
         this.rankData = res.data.data
-      })      
+        console.log(this.rankData)  
+      }) 
+    
     }
+    
   },
-  comments: {
+  components: {
     Foot
   },
   filters: {
