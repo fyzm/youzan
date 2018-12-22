@@ -17,27 +17,28 @@ new Vue({
   el:'.container',
   data: {
     searchList: null,
-    show: false
+    show: false,
   },
   created(){
-
+    this.getSearchList()
   },
   methods:{
-    getsearchList() {
+    getSearchList() {
       axios.get(url.searchList,{keyword,id}).then(res => {
         this.searchList = res.data.lists
-        
+
       })
     },
     move() {
       if(document.body.scrollTop > 100) {
+        console.log(document.body.scrollTop)
         this.show = true
       } else {
         this.show = false
       }
     },
     toTop() {
-      Velocity(document.body,"sroll",{duration: 1000})
+      Velocity(document.body,"scroll",{duration: 1000})
     }
   },
   mixins: [mixin]

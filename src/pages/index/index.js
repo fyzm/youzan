@@ -56,4 +56,5 @@ let app = new Vue({
     Foot,
     Swipe
   }
+  
 })
