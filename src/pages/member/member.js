@@ -17,9 +17,11 @@ let routes = [{
     redirect: 'all'
   },{
     path: 'all',
+    name: 'all',
     component: require('./components/all.vue').default
   },{
     path: 'form',
+    name: 'form',
     component: require('./components/form.vue').default
   }]
 }]

@@ -1,19 +1,24 @@
 <template>
   <div class="container " style="min-height: 597px;">
-    <div class="block-list address-list section section-first js-no-webview-block">
+    <div class="block-list address-list section section-first js-no-webview-block" v-if="lists&&lists.length">
       <a class="block-item js-address-item address-item " 
-      @click="toEdit()"
-      
+        v-for="list in lists" :key="list.id"
+        @click="toEdit(list)"
+        :class="{'address-item-default':list.isDefault}"
       >
-        <div class="address-title">tony 13112345678</div>
-        <p>广东省珠海市香洲区南方软件园</p>
+        <div class="address-title">{{list.name}} {{list.tel}}</div>
+        <p>{{list.provinceName}} {{list.cityName}}{{list.districtName}}{{list.address}}</p>
         <a class="address-edit">修改</a>
       </a>
     </div>
+    <div v-if="lists&&!lists.length">
+      没有地址，请添加
+    </div>
     <div class="block stick-bottom-row center">
-      <router-link class="btn btn-blue js-no-webview-block js-add-address-btn" to="/address/form">
+      <router-link class="btn btn-blue js-no-webview-block js-add-address-btn" 
+          :to="{name: 'form',query:{type:'add'}}">
             新增地址
-        </router-link>
+      </router-link>
     </div>
   </div>
 </template>
@@ -39,8 +44,11 @@ export default {
     })
   },
   methods:{
-    toEdit() {
-      this.$router.push({path: '/address/form'})
+    toEdit(list) {
+      this.$router.push({name: 'form',query: {
+        type: 'edit',
+        instance: list
+      }})
     }
   }
 }
