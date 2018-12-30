@@ -4,8 +4,12 @@
 
 import Vue from 'vue'
 import router from './router/index.js'
+import store from './vuex'
+
+
 
 new Vue({
   el: '#app',
-  router
+  router,
+  store
 })
