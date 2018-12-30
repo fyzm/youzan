@@ -10,6 +10,8 @@ import Swipe from 'components/Swipe.vue'
 import { InfiniteScroll } from 'mint-ui';
 Vue.use(InfiniteScroll);
 
+import bus from 'js/bus.js'
+
 let app = new Vue({
   el:'#app',
   data: {
@@ -18,13 +20,24 @@ let app = new Vue({
     loading: false,
     allLoaded: false,
     pageSize:6,
-    bannerLists: null
+    bannerLists: null,
+    obj:{
+      age:20
+    }
   },
   created() {
     this.getLists()
     this.getBanner()
+    bus.$on('change',(age) =>{
+      console.log(age)
+      this.obj.age = age
+    })
   },
   methods: {
+    // changeAge(age){
+    //   console.log(age)
+    //   this.obj.age = age
+    // },
     getLists(){
       if(this.allLoaded) return 
       this.loading = true
